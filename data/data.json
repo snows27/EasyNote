@@ -1,74 +1,296 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "admin",
-        "password": "admin",
-        "created_at": "2024-02-08T09:00:00Z"
-      },
-      {
-        "id": 2,
-        "username": "usertest",
-        "password": "userpassword",
-        "created_at": "2024-02-08T09:30:00Z"
-      }
-    ],
-    "notes": [
-      {
-        "id": 1,
-        "title": "First Title",
-        "content": "Note content goes here",
-        "user_id": 1,
-        "creator": "admin",
-        "created_at": "2024-02-08T10:00:00Z",
-        "category": "Work",
-        "edit_history": [{
-            "editor": "admin",
-            "edited_at": "2024-02-08T11:00:00Z",
-            "changes": "Updated content"
-        }]
-      },
-      {
-        "id": 2,
-        "title": "Second Title",
-        "content": "Another note content",
-        "user_id": 2,
-        "creator": "usertest",
-        "created_at": "2024-02-08T11:30:00Z",
-        "category": "Personal",
-        "edit_history": [{
-            "editor": "usertest",
-            "edited_at": "2024-02-08T11:00:00Z",
-            "changes": "Updated content"
-        }]
-      },
-      {
-        "id": 3,
-        "title": "Third Title",
-        "content": "Another note content",
-        "user_id": 1,
-        "creator": "admin",
-        "created_at": "2024-02-08T11:30:00Z",
-        "category": "Personal",
-        "edit_history": [{
-            "editor": "usertest",
-            "edited_at": "2024-02-08T11:00:00Z",
-            "changes": "Updated content"
-        }]
-      },
-      {
-        "id": 4,
-        "title": "Forth Title",
-        "content": "Another note content",
-        "user_id": 1,
-        "creator": "admin",
-        "created_at": "2024-02-08T11:30:00Z",
-        "category": "Personal",
-        "edit_history": [{
-            "editor": "usertest",
-            "edited_at": "2024-02-08T11:00:00Z",
-            "changes": "Updated content"
-        }]
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin",
+      "created_at": "05/02/2024 12:50"
+    },
+    {
+      "id": 2,
+      "username": "usertest",
+      "password": "userpassword",
+      "created_at": "05/02/2024 13:00"
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "title": "Epic Battle",
+      "content": "In the midst of a fierce battle, two powerful warriors clash in a fight for supremacy.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "09/02/2024 14:30",
+      "category": "Action",
+      "edit_history": [
+        {
+          "editor": "admin",
+          "edited_at": "09/02/2024 15:45",
+          "changes": "Added intense fight scenes"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Magic Academy",
+      "content": "A group of young wizards attends a prestigious magic academy to hone their magical abilities and uncover the secrets of the arcane arts.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "09/02/2024 16:15",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "11/02/2024 08:15",
+          "changes": "Revised dialogue for clarity"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Space Odyssey",
+      "content": "Explorers journey to the far reaches of space in search of new worlds, encountering strange civilizations and cosmic wonders along the way.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "10/02/2024 09:45",
+      "category": "Sci-Fi",
+      "edit_history": [
+        {
+          "editor": "admin",
+          "edited_at": "10/02/2024 12:30",
+          "changes": "Enhanced character development"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Samurai Chronicles",
+      "content": "In feudal Japan, samurai warriors embark on epic quests, battling rival clans and supernatural forces to protect their honor and uphold justice.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "10/02/2024 11:20",
+      "category": "Historical",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "13/02/2024 09:45",
+          "changes": "Improved pacing in action scenes"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Mystic Adventure",
+      "content": "A young hero sets out on a journey to uncover ancient artifacts and unlock the secrets of a long-lost civilization.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "11/02/2024 08:10",
+      "category": "Adventure",
+      "edit_history": [
+        {
+          "editor": "admin",
+          "edited_at": "14/02/2024 10:10",
+          "changes": "Expanded world-building elements"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Dragon Quest",
+      "content": "Brave warriors embark on a quest to slay fearsome dragons and restore peace to the kingdom.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "11/02/2024 10:55",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "15/02/2024 11:30",
+          "changes": "Adjusted character motivations"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Cyberpunk Revolution",
+      "content": "In a dystopian future, hackers and rebels fight against oppressive regimes and corporate overlords to reclaim freedom and justice.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "12/02/2024 13:40",
+      "category": "Sci-Fi",
+      "edit_history": [
+        {
+          "editor": "admin",
+          "edited_at": "16/02/2024 13:20",
+          "changes": "Corrected continuity errors"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Pirate Adventure",
+      "content": "A band of swashbuckling pirates sail the high seas in search of treasure, facing perilous challenges and rival buccaneers along the way.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "13/02/2024 09:20",
+      "category": "Adventure",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "17/02/2024 10:25",
+          "changes": "Refined prose for elegance"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Mythical Quest",
+      "content": "Heroes embark on a quest to uncover the truth behind ancient myths and legends, battling mythical creatures and dark forces to save the world.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "14/02/2024 11:05",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "admin",
+          "edited_at": "18/02/2024 12:40",
+          "changes": "Added foreshadowing elements"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Magical Kingdom",
+      "content": "In a magical kingdom ruled by benevolent wizards, young apprentices learn to harness the power of magic and defend their homeland from dark forces.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "14/02/2024 14:50",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "19/02/2024 14:50",
+          "changes": "Adjusted pacing in dialogue scenes"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Eternal Bonds",
+      "content": "In a world torn apart by war, two star-crossed lovers defy fate to be together.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "15/02/2024 16:30",
+      "category": "Romance",
+      "edit_history": []
+    },
+    {
+      "id": 12,
+      "title": "Legendary Heroes",
+      "content": "Legends tell of heroes who rise from humble beginnings to become saviors of the realm.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "16/02/2024 09:15",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "19/02/2024 14:50",
+          "changes": "Adjusted pacing in dialogue scenes"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Time Travelers",
+      "content": "Adventurers journey through time and space, unraveling mysteries and rewriting history.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "17/02/2024 10:45",
+      "category": "Sci-Fi",
+      "edit_history": []
+    },
+    {
+      "id": 14,
+      "title": "Underworld Chronicles",
+      "content": "In the shadowy depths of the underworld, dark secrets and ancient evils lurk, waiting to be unleashed upon the world above.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "18/02/2024 14:20",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "19/02/2024 14:50",
+          "changes": "Adjusted pacing in dialogue scenes"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Empire of Shadows",
+      "content": "In a realm ruled by darkness, rebels fight to overthrow a tyrannical regime and restore light to the land.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "19/02/2024 11:20",
+      "category": "Adventure",
+      "edit_history": []
+    },
+    {
+      "id": 16,
+      "title": "Celestial Guardians",
+      "content": "Guardians from distant galaxies unite to protect the universe from cosmic threats and intergalactic villains.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "20/02/2024 09:30",
+      "category": "Sci-Fi",
+      "edit_history": []
+    },
+    {
+      "id": 17,
+      "title": "Forgotten Realms",
+      "content": "In a world forgotten by time, ancient civilizations and lost treasures await discovery by intrepid adventurers.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "21/02/2024 12:40",
+      "category": "Fantasy",
+      "edit_history": []
+    },
+    {
+      "id": 18,
+      "title": "Starlight Symphony",
+      "content": "In a galaxy of wonder and magic, a young bard seeks to compose the greatest symphony the universe has ever known.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "22/02/2024 14:50",
+      "category": "Fantasy",
+      "edit_history": [
+        {
+          "editor": "usertest",
+          "edited_at": "19/02/2024 14:50",
+          "changes": "Adjusted pacing in dialogue scenes"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Shadowhunters",
+      "content": "Warriors known as Shadowhunters battle demons and dark forces to protect humanity from supernatural threats.",
+      "user_id": 1,
+      "creator": "admin",
+      "created_at": "23/02/2024 09:15",
+      "category": "Action",
+      "edit_history": []
+    },
+    {
+      "id": 20,
+      "title": "Chronicles of Destiny",
+      "content": "Destiny weaves its tapestry as heroes and villains alike strive to fulfill their fates and shape the course of history.",
+      "user_id": 2,
+      "creator": "usertest",
+      "created_at": "24/02/2024 11:30",
+      "category": "Fantasy",
+      "edit_history": []
+    }
+  ]
+}
