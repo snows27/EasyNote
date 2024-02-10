@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-card
       class="pa-8 d-flex justify-center flex-wrap mx-auto"
       variant="plain"
@@ -11,19 +10,21 @@
         density="comfortable"
         item-props
         menu-icon=""
+        label="Search #"
         placeholder="Search #"
         prepend-inner-icon="mdi-magnify"
         rounded
         theme="light"
         variant="solo"
+        v-model="queryTags"
         @input="filterTag($event)"
       ></v-autocomplete>
     </v-card>
     <v-card
-      class="mx-auto my-8"
+      class="mx-auto my-6"
       max-width="600"
       elevation="12"
-      v-for="(note) in paginationNotes"
+      v-for="note in paginationNotes"
       :key="note.id"
     >
       <v-card-item>
@@ -50,8 +51,8 @@
                 >mdi-close</v-icon
               >
             </div>
-            <v-text-field v-model="tempTitle[note.id]"></v-text-field>
-            <v-text-field v-model="tempCategory[note.id]"></v-text-field>
+            <v-text-field label="title" v-model="tempTitle[note.id]"></v-text-field>
+            <v-text-field label="category" v-model="tempCategory[note.id]"></v-text-field>
           </div>
         </v-card-title>
         <v-card-subtitle>
@@ -61,7 +62,7 @@
       </v-card-item>
       <v-card-text>
         <div v-if="!editingStates[note.id]">{{ note.content }}</div>
-        <v-textarea v-else v-model="tempContent[note.id]"></v-textarea>
+        <v-textarea v-else label="Content" v-model="tempContent[note.id]"></v-textarea>
       </v-card-text>
       <v-card-actions
         v-if="editingStates[note.id]"
@@ -70,8 +71,8 @@
         <v-btn @click="saveChanges(note.id)" class="bg-blue">Save</v-btn>
       </v-card-actions>
     </v-card>
-    <v-pagination v-model="currentPage" :length="totalPages"></v-pagination>
-  </div>
+    <v-pagination v-model="currentPage" :length="totalPages" :total-visible="5" class="my-5"></v-pagination>
+    <Footer />
 </template>
 <script>
 import { defineComponent } from "@vue/composition-api";
@@ -85,12 +86,12 @@ export default defineComponent({
     },
     username: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const userNotes = ref([]);
-    const notesPerPage = 2;
+    const notesPerPage = 3;
     const currentPage = ref(1);
     const filterNoteCat = ref([]);
     const queryTags = ref("");
@@ -98,73 +99,103 @@ export default defineComponent({
     const tempCategory = ref([]);
     const tempContent = ref([]);
     const editingStates = ref([]);
-   
     const fetchUserNotes = () => {
-      const notes = dataFetch.notes;
-      userNotes.value = notes.filter(
+      const storedNotes = localStorage.getItem("notes");
+      if (storedNotes) {
+        userNotes.value = JSON.parse(storedNotes);
+      } else {
+        userNotes.value = dataFetch.notes;
+      }
+      const filteredNotes = userNotes.value.filter(
         (note) => note.user_id === Number(props.userId)
       );
+      filterNoteCat.value = filteredNotes;
       editingStates.value = new Array(userNotes.value.length).fill(false);
-      filterNoteCat.value = userNotes.value;
       console.log("Fetched Notes: ", userNotes.value);
       return userNotes.value;
     };
     const totalPages = computed(() =>
-      Math.ceil(userNotes.value.length / notesPerPage)
+      Math.ceil(filterNoteCat.value.length / notesPerPage)
     );
     const paginationNotes = computed(() => {
       const startIndex = (currentPage.value - 1) * notesPerPage;
       const endIndex = startIndex + notesPerPage;
       return filterNoteCat.value.slice(startIndex, endIndex);
+      
     });
-    onMounted(() => {
-      console.log(fetchUserNotes());
-      console.log(userNotes.value);
-    });
-    const filterTag = (event) => {
-      console.log(event);
-      const query = event.target.value;
-      filterNoteCat.value = userNotes.value.filter((note) => {
-        return note.category.toLowerCase().includes(query.toLowerCase());
-      });
-      currentPage.value = 1;
-    };
+
+      const filterTag = (event) => {
+        console.log(event);
+        queryTags.value = event.target.value;
+        filterNoteCat.value = userNotes.value.filter((note) => {
+          return note.category.toLowerCase().includes(queryTags.value.toLowerCase());
+        });
+        currentPage.value = 1;
+      };
     const toggleEditing = (noteId) => {
-      console.log(noteId)
+      console.log(noteId);
       if (!editingStates[noteId]) {
-        tempTitle.value[noteId] = userNotes.value.find(note => note.id === noteId).title;
-        tempCategory.value[noteId] = userNotes.value.find(note => note.id === noteId).category;
-        tempContent.value[noteId] = userNotes.value.find(note => note.id === noteId).content;
-  }
-  editingStates.value[noteId] = !editingStates.value[noteId];
+        tempTitle.value[noteId] = userNotes.value.find(
+          (note) => note.id === noteId
+        ).title;
+        tempCategory.value[noteId] = userNotes.value.find(
+          (note) => note.id === noteId
+        ).category;
+        tempContent.value[noteId] = userNotes.value.find(
+          (note) => note.id === noteId
+        ).content;
+      }
+      editingStates.value[noteId] = !editingStates.value[noteId];
     };
     const toggleClosing = (noteId) => {
       editingStates.value[noteId] = false;
     };
-  const saveChanges=(noteId)=>{
-            const currentDate = new Date();
-            const day = currentDate.getDate().toString().padStart(2, '0');
-            const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-            const year = currentDate.getFullYear();
-            const hours = currentDate.getHours().toString().padStart(2, '0'); 
-            const minutes = currentDate.getMinutes().toString().padStart(2, '0');
-            const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
-      const note = userNotes.value.find(note=>note.id===noteId);
-      if (note) {
-        const prevContent = note.content
-        note.title = tempTitle.value[noteId];
-        note.category = tempCategory.value[noteId];
-        note.content = tempContent.value[noteId];
-        editingStates.value[noteId] = false;
-        const editHistory = {
+const saveChanges = (noteId) => {
+  const updatedNotes = userNotes.value.map((note) => {
+    if (note.id === noteId) {
+      const prevContent = note.content;
+      const updatedNote = {
+        ...note,
+        title: tempTitle.value[noteId],
+        category: tempCategory.value[noteId],
+        content: tempContent.value[noteId],
+      };
+
+      if (!updatedNote.edit_history || updatedNote.edit_history.length === 0) {
+        updatedNote.edit_history = [{
           editor: props.username,
-          edited_at: formattedDate,
-          changes: `Updated content from "${prevContent}" to "${note.content}"`
-        };
-        note.edit_history.push(editHistory);
-        editingStates.value[noteId] = false;
-  }
-  }
+          edited_at: getFormatDateTime(),
+          changes: prevContent
+        }];
+      } else {
+        const latestEdit = updatedNote.edit_history[0];
+        latestEdit.editor = props.username;
+        latestEdit.edited_at = getFormatDateTime();
+        latestEdit.changes = prevContent;
+      }
+      return updatedNote;
+    }
+    return note;
+  });
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      console.log(JSON.parse(localStorage.getItem("notes")));
+      editingStates.value[noteId] = false;
+      fetchUserNotes();
+    };
+    onMounted(() => {
+      console.log(fetchUserNotes());
+      console.log(userNotes.value);
+      console.log(JSON.parse(localStorage.getItem("notes")));
+    });
+    const getFormatDateTime = () => {
+      const currentDate = new Date();
+      const day = currentDate.getDate().toString().padStart(2, "0");
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+      const year = currentDate.getFullYear();
+      const hours = currentDate.getHours().toString().padStart(2, "0");
+      const minutes = currentDate.getMinutes().toString().padStart(2, "0");
+      return `${day}/${month}/${year} ${hours}:${minutes}`;
+    };
     return {
       userNotes,
       notesPerPage,
@@ -179,7 +210,7 @@ export default defineComponent({
       tempTitle,
       tempCategory,
       tempContent,
-      saveChanges
+      saveChanges,
     };
   },
 });
