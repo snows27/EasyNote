@@ -1,0 +1,74 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "admin",
+        "password": "admin",
+        "created_at": "2024-02-08T09:00:00Z"
+      },
+      {
+        "id": 2,
+        "username": "usertest",
+        "password": "userpassword",
+        "created_at": "2024-02-08T09:30:00Z"
+      }
+    ],
+    "notes": [
+      {
+        "id": 1,
+        "title": "First Title",
+        "content": "Note content goes here",
+        "user_id": 1,
+        "creator": "admin",
+        "created_at": "2024-02-08T10:00:00Z",
+        "category": "Work",
+        "edit_history": [{
+            "editor": "admin",
+            "edited_at": "2024-02-08T11:00:00Z",
+            "changes": "Updated content"
+        }]
+      },
+      {
+        "id": 2,
+        "title": "Second Title",
+        "content": "Another note content",
+        "user_id": 2,
+        "creator": "usertest",
+        "created_at": "2024-02-08T11:30:00Z",
+        "category": "Personal",
+        "edit_history": [{
+            "editor": "usertest",
+            "edited_at": "2024-02-08T11:00:00Z",
+            "changes": "Updated content"
+        }]
+      },
+      {
+        "id": 3,
+        "title": "Third Title",
+        "content": "Another note content",
+        "user_id": 1,
+        "creator": "admin",
+        "created_at": "2024-02-08T11:30:00Z",
+        "category": "Personal",
+        "edit_history": [{
+            "editor": "usertest",
+            "edited_at": "2024-02-08T11:00:00Z",
+            "changes": "Updated content"
+        }]
+      },
+      {
+        "id": 4,
+        "title": "Forth Title",
+        "content": "Another note content",
+        "user_id": 1,
+        "creator": "admin",
+        "created_at": "2024-02-08T11:30:00Z",
+        "category": "Personal",
+        "edit_history": [{
+            "editor": "usertest",
+            "edited_at": "2024-02-08T11:00:00Z",
+            "changes": "Updated content"
+        }]
+      }
+    ]
+  }
