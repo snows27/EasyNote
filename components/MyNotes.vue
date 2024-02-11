@@ -1,12 +1,14 @@
 <template>
+<div style="height: 100vh" class="grid align-center">
     <v-card
       class="pa-8 d-flex justify-center flex-wrap mx-auto"
       variant="plain"
       max-width="344"
+      
     >
       <v-autocomplete
         auto-select-first
-        class="flex-full-width"
+        class="flex-full-width w-screen"
         density="comfortable"
         item-props
         menu-icon=""
@@ -19,13 +21,16 @@
         v-model="queryTags"
         @input="filterTag($event)"
       ></v-autocomplete>
+      
     </v-card>
+    
     <v-card
-      class="mx-auto my-6"
+      class="mx-auto my-6 w-full"
       max-width="600"
       elevation="12"
       v-for="note in paginationNotes"
       :key="note.id"
+      
     >
       <v-card-item>
         <v-card-title
@@ -72,6 +77,7 @@
       </v-card-actions>
     </v-card>
     <v-pagination v-model="currentPage" :length="totalPages" :total-visible="5" class="my-5"></v-pagination>
+    </div>
     <Footer />
 </template>
 <script>
