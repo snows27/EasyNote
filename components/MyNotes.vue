@@ -1,5 +1,5 @@
 <template>
-<div style="height: 100vh" class="grid align-center">
+<div class="grid align-center">
     <v-card
       class="pa-8 d-flex justify-center flex-wrap mx-auto"
       variant="plain"
@@ -78,7 +78,7 @@
     </v-card>
     <v-pagination v-model="currentPage" :length="totalPages" :total-visible="5" class="my-5"></v-pagination>
     </div>
-    <Footer />
+    
 </template>
 <script>
 import { defineComponent } from "@vue/composition-api";
